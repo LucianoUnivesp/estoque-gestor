@@ -1,0 +1,329 @@
+/* Reset básico */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Cabeçalho */
+.header {
+    background: #ffffff;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.header .logo {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+}
+
+.page-title {
+    font-size: 1.8rem;
+    color: #007bff;
+    margin-bottom: 1.5rem;
+}
+
+/* Classe hidden */
+.hidden {
+    display: none;
+}
+
+/* Resumo */
+.summary {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+}
+
+.summary-item {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    text-align: center;
+}
+
+.summary-item h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.summary-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+/* Valores positivos (verde) */
+.value-green {
+    color: #28a745;
+    /* Verde */
+    font-weight: bold;
+}
+
+.value-black {
+    color: #000000;
+    /* Verde */
+    font-weight: bold;
+}
+
+/* Valores negativos (vermelho) */
+.value-red {
+    color: #dc3545;
+    /* Vermelho */
+    font-weight: bold;
+}
+
+/* Ajuste para a seção de saldo */
+.summary-item.balance.positive .value {
+    color: #28a745;
+    /* Verde */
+}
+
+.summary-item.balance.negative .value {
+    color: #dc3545;
+    /* Vermelho */
+}
+
+/* Botão Principal */
+.btn-primary {
+    padding: 0.8rem 1.5rem;
+    background-color: #28a745;
+    color: white;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+    transform: scale(1.02);
+}
+
+/* Tabela de Movimentações */
+.movements-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+
+.movements-table th,
+.movements-table td {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.movements-table th {
+    background-color: #e9ecef;
+    color: #555;
+}
+
+.movements-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.movements-table .btn-secondary {
+    background-color: #007bff;
+}
+
+.movements-table .btn-secondary:hover {
+    background-color: #0056b3;
+}
+
+.movements-table .btn-danger {
+    background-color: #dc3545;
+}
+
+.movements-table .btn-danger:hover {
+    background-color: #bd2130;
+}
+
+/* Formulário */
+form {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#form-stock {
+    margin-top: 0;
+    padding: 0;
+    background: #ffffff;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+form .btn-save {
+    background-color: #28a745;
+}
+
+form .btn-save:hover {
+    background-color: #218838;
+}
+
+form .btn-cancel {
+    background-color: #dc3545;
+}
+
+form .btn-cancel:hover {
+    background-color: #bd2130;
+}
+
+/* Rodapé */
+.footer {
+    background: #f8f9fa;
+    padding: 1rem;
+    text-align: center;
+    color: #555;
+    margin-top: auto;
+    border-top: 1px solid #ddd;
+}
+
+/* Alertas */
+.alert {
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.action-buttons {
+    color: white;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.action-buttons .btn {
+    color: white;
+    margin: 0;
+    padding: 0.2rem 1rem;
+}
+
+/* Remover sombra de botões dentro de formulários */
+.no-shadow {
+    box-shadow: none !important;
+    /* Remove a sombra */
+    background-color: #dc3545 !important;
+    /* Define a cor do botão */
+    color: white !important;
+    /* Cor do texto */
+    border: none !important;
+    /* Remove bordas extras */
+    padding: 0.5rem 1rem !important;
+    /* Ajusta o espaçamento */
+    cursor: pointer !important;
+    /* Garante o cursor de clique */
+    font-size: 0.9rem !important;
+    /* Ajuste de tamanho */
+    border-radius: 5px !important;
+    /* Suaviza os cantos */
+}
+
+.no-shadow-green {
+    box-shadow: none !important;
+    /* Remove a sombra */
+    background-color: green;
+    /* Define a cor do botão */
+    color: white !important;
+    /* Cor do texto */
+    border: none !important;
+    /* Remove bordas extras */
+    padding: 0.5rem 1rem !important;
+    /* Ajusta o espaçamento */
+    cursor: pointer !important;
+    /* Garante o cursor de clique */
+    font-size: 0.9rem !important;
+    /* Ajuste de tamanho */
+    border-radius: 5px !important;
+    /* Suaviza os cantos */
+}
+
+/* Botão excluir no hover */
+.no-shadow:hover {
+    background-color: #bd2130 !important;
+    /* Cor de hover para consistência */
+    box-shadow: none !important;
+    /* Garante que não adiciona sombra no hover */
+}
+
+/* Garantir alinhamento e espaçamento */
+.action-buttons {
+    display: flex !important;
+    gap: 0.5rem !important;
+    align-items: center !important;
+}

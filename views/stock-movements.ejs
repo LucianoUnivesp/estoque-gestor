@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimentações de Estoque</title>
+    <link rel="stylesheet" href="/css/stock-movements.css">
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/3827/3827340.png" alt="Logo Estoque Gestor"
+                    class="logo">
+            </a>
+            <h1>Movimentações de Estoque</h1>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main class="container">
+        <!-- Informações de Resumo -->
+        <section class="summary">
+            <div class="summary-item entry">
+                <h3>Entradas do Dia</h3>
+                <p class="value-black">
+                    <%= dailySummary.entries || 0 %> unidades
+                </p>
+                <p class="value-black">
+                    R$ <%= (dailySummary.entriesValue || 0).toFixed(2) %>
+                </p>
+            </div>
+            <div class="summary-item sale">
+                <h3>Vendas do Dia</h3>
+                <p class="value-black">
+                    <%= dailySummary.exits || 0 %> unidades
+                </p>
+                <p class="value-black">
+                    R$ <%= (dailySummary.exitsValue || 0).toFixed(2) %>
+                </p>
+            </div>
+            <div class="summary-item balance value-black">
+                <h3>Saldo do Dia</h3>
+                <p
+                    class="<%= (dailySummary.entriesValue - dailySummary.exitsValue) >= 0 ? 'value-red' : 'value-green' %>">
+                    R$ <%= (dailySummary.exitsValue - dailySummary.entriesValue).toFixed(2) %>
+                </p>
+            </div>
+        </section>
+
+        <!-- Mensagem de erro ou sucesso -->
+        <% if (error) { %>
+            <div class="alert alert-danger">
+                <%= error %>
+            </div>
+            <% } %>
+                <% if (successMessage) { %>
+                    <div class="alert alert-success">
+                        <%= successMessage %>
+                    </div>
+                    <% } %>
+
+                        <h2 class="page-title">Histórico de Movimentações</h2>
+
+                        <!-- Botão para lançar movimentação -->
+                        <section class="actions">
+                            <button id="add-movement-btn" class="btn btn-primary">Lançar Movimentação</button>
+                        </section>
+
+                        <!-- Formulário de Lançamento -->
+                        <section id="movement-form" class="hidden">
+                            <h3 class="form-title">Lançar Movimentação</h3>
+                            <form id="movement-form" action="/stock-movements" method="POST">
+                                <label for="product">Produto</label>
+                                <select id="product" name="productId" required>
+                                    <% products.forEach(product=> { %>
+                                        <option value="<%= product.id %>">
+                                            <%= product.name %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+
+                                <label for="type">Tipo</label>
+                                <select id="type" name="type" required>
+                                    <option value="entry">Entrada</option>
+                                    <option value="exit">Saída</option>
+                                </select>
+
+                                <label for="quantity">Quantidade</label>
+                                <input type="number" id="quantity" name="quantity" min="1" required>
+
+                                <label for="notes">Notas</label>
+                                <textarea id="notes" name="notes"></textarea>
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-save">Salvar</button>
+                                    <button type="button" id="cancel-movement-btn"
+                                        class="btn btn-cancel">Cancelar</button>
+                                </div>
+                            </form>
+                        </section>
+
+                        <!-- Tabela de Movimentações -->
+                        <section>
+                            <table class="movements-table">
+                                <thead>
+                                    <tr>
+                                        <th>Produto</th>
+                                        <th>Tipo</th>
+                                        <th>Quantidade</th>
+                                        <th>Data</th>
+                                        <th>Notas</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if (stockMovements.length> 0) { %>
+                                        <% stockMovements.forEach(movement=> { %>
+                                            <tr>
+                                                <td>
+                                                    <%= movement.product.name %>
+                                                </td>
+                                                <td>
+                                                    <%= movement.type==='entry' ? 'Entrada' : 'Saída' %>
+                                                </td>
+                                                <td>
+                                                    <%= movement.quantity %>
+                                                </td>
+                                                <td>
+                                                    <%= new Date(movement.createdAt).toLocaleDateString() %>
+                                                </td>
+                                                <td>
+                                                    <%= movement.notes || 'N/A' %>
+                                                </td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <form
+                                                            action="/stock-movements/<%= movement.id %>?_method=DELETE"
+                                                            method="POST" id="form-stock"
+                                                            onsubmit="return confirm('Tem certeza que deseja excluir esta movimentação?');">
+                                                            <a href="/stock-movements/edit/<%= movement.id %>"
+                                                                class="btn btn-secondary no-shadow-green ">Editar</a>
+                                                            <button type="submit"
+                                                                class="btn btn-danger no-shadow">Excluir</button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                            <% }) %>
+                                                <% } else { %>
+                                                    <tr>
+                                                        <td colspan="6">Nenhuma movimentação registrada.</td>
+                                                    </tr>
+                                                    <% } %>
+                                </tbody>
+                            </table>
+                        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>&copy; 2024 Estoque Gestor. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('add-movement-btn').addEventListener('click', () => {
+            document.getElementById('movement-form').classList.remove('hidden');
+        });
+
+        document.getElementById('cancel-movement-btn').addEventListener('click', () => {
+            document.getElementById('movement-form').classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>

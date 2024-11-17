@@ -1,0 +1,265 @@
+/* Reset básico */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Cabeçalho */
+.header {
+    background: #ffffff;
+    color: #333;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header .logo-link {
+    text-decoration: none;
+}
+
+.header .logo {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.header .logo:hover {
+    transform: scale(1.05);
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+    color: #007bff;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+}
+
+.page-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 1.5rem;
+}
+
+/* Botão Principal */
+.btn-primary {
+    padding: 0.8rem 1.5rem;
+    background-color: #28a745;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+    transform: scale(1.02);
+}
+
+/* Tabela de Produtos */
+.products-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+
+.products-table th,
+.products-table td {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.products-table th {
+    background-color: #e9ecef;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.products-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.products-table tr:hover {
+    background-color: #f1f3f5;
+}
+
+.products-table .btn {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.products-table .btn-secondary {
+    background-color: #007bff;
+}
+
+.products-table .btn-secondary:hover {
+    background-color: #0056b3;
+}
+
+.products-table .btn-danger {
+    background-color: #dc3545;
+}
+
+.products-table .btn-danger:hover {
+    background-color: #bd2130;
+}
+
+/* Formulário Adicionar e Editar Produto */
+.hidden {
+    display: none;
+}
+
+.add-product-form,
+.edit-product-form {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-product-form.active,
+.edit-product-form {
+    display: flex;
+}
+
+.add-product-form label,
+.edit-product-form label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.add-product-form input,
+.add-product-form textarea,
+.edit-product-form input,
+.edit-product-form textarea {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.add-product-form textarea,
+.edit-product-form textarea {
+    resize: vertical;
+}
+
+.add-product-form .form-actions,
+.edit-product-form .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.add-product-form .btn-save,
+.edit-product-form .btn-save {
+    background-color: #28a745;
+    color: white;
+}
+
+.add-product-form .btn-save:hover,
+.edit-product-form .btn-save:hover {
+    background-color: #218838;
+}
+
+.add-product-form .btn-cancel,
+.edit-product-form .btn-cancel {
+    background-color: #dc3545;
+    color: white;
+}
+
+.add-product-form .btn-cancel:hover,
+.edit-product-form .btn-cancel:hover {
+    background-color: #bd2130;
+}
+
+/* Mensagem de Nenhum Produto */
+.no-products-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 2rem;
+}
+
+/* Rodapé */
+.footer {
+    background: #f8f9fa;
+    text-align: center;
+    padding: 1rem;
+    color: #555;
+    border-top: 1px solid #ddd;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+
+    .products-table th,
+    .products-table td {
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        font-size: 0.9rem;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .products-table th,
+    .products-table td {
+        padding: 0.5rem;
+    }
+
+    .btn-primary {
+        padding: 0.6rem 1rem;
+    }
+}

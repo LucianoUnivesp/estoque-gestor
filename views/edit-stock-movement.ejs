@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Movimentação</title>
+    <link rel="stylesheet" href="/css/stock-movements.css">
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="logo-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/3827/3827340.png" alt="Estoque Gestor Logo"
+                    class="logo">
+            </a>
+            <h1>Editar Movimentação</h1>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main class="container">
+        <h2 class="page-title">Editar Movimentação</h2>
+
+        <!-- Formulário de Edição -->
+        <section class="edit-stock-movement-form">
+            <form action="/stock-movements/<%= stockMovement.id %>?_method=PATCH" method="POST">
+                <label for="product">Produto</label>
+                <select id="product" name="productId" required>
+                    <% products.forEach(product=> { %>
+                        <option value="<%= product.id %>" <%=product.id===stockMovement.product.id ? 'selected' : '' %>>
+                            <%= product.name %>
+                        </option>
+                        <% }) %>
+                </select>
+
+                <label for="type">Tipo</label>
+                <select id="type" name="type" required>
+                    <option value="entry" <%=stockMovement.type==='entry' ? 'selected' : '' %>>Entrada</option>
+                    <option value="exit" <%=stockMovement.type==='exit' ? 'selected' : '' %>>Saída</option>
+                </select>
+
+                <label for="quantity">Quantidade</label>
+                <input type="number" id="quantity" name="quantity" value="<%= stockMovement.quantity %>" required>
+
+                <label for="notes">Notas</label>
+                <textarea id="notes" name="notes"
+                    placeholder="Notas adicionais (opcional)"><%= stockMovement.notes || '' %></textarea>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-save">Salvar</button>
+                    <a href="/stock-movements" class="btn btn-cancel">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>&copy; 2024 Estoque Gestor. Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+</html>

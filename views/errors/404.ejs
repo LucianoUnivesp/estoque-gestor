@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erro 404 - Página Não Encontrada</title>
+    <link rel="stylesheet" href="/css/errors.css">
+</head>
+
+<body>
+    <div class="error-container">
+        <div class="error-message">
+            <h1>Erro 404</h1>
+            <p>O caminho <strong>
+                    <%= path %>
+                </strong> não foi encontrado.</p>
+
+            <!-- Barra de Progresso -->
+            <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+
+            <p>Você será redirecionado para a home em <span id="countdown">5</span> segundos...</p>
+            <a href="/" class="btn btn-primary">Voltar para a Home</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let countdown = 5;
+            let progress = 100; // Começa a barra em 100%
+            const countdownElement = document.getElementById('countdown');
+            const progressBar = document.getElementById('progress-bar');
+
+            if (countdownElement && progressBar) {
+                // Atualiza o contador e a barra de progresso
+                function updateCountdown() {
+                    if (countdown > 0) {
+                        countdown -= 0.1; // Diminui com precisão de 0.1
+                        progress -= 2; // Ajusta a redução para sincronizar com 5s
+                        countdownElement.innerText = countdown.toFixed(1); // Exibe com 1 casa decimal
+                        progressBar.style.width = progress + '%'; // Atualiza a largura da barra
+
+                        // Faz a barra e o número esmaecerem conforme o tempo passa
+                        countdownElement.style.opacity = (progress / 100).toFixed(2);
+                    } else {
+                        window.location.href = '/'; // Redireciona após o contador chegar a 0
+                    }
+                }
+
+                // Atualiza a cada 100ms
+                setInterval(updateCountdown, 100);
+            }
+        });
+    </script>
+</body>
+
+</html>
